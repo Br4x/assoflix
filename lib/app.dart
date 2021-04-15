@@ -9,6 +9,8 @@ import 'package:http/http.dart' show Client;
 import 'package:rxdart/rxdart.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:bloc/bloc.dart';
 
 // Plugins import...
 import 'package:fluro/fluro.dart';
@@ -44,6 +46,7 @@ part 'src/pages/filter/index.dart';
 part 'src/pages/filter/state.dart';
 part 'src/pages/detail/index.dart';
 part 'src/pages/detail/state.dart';
+part 'src/pages/summary/content_header.dart';
 
 // Widgets
 part 'src/widgets/tvshow-list/index.dart';
@@ -51,6 +54,10 @@ part 'src/widgets/player-life-cycle/index.dart';
 part 'src/widgets/player-life-cycle/state.dart';
 part 'src/widgets/player-controls/index.dart';
 part 'src/widgets/player-controls/state.dart';
+part 'src/widgets/responsive.dart';
+part 'src/widgets/vertical_icon_button.dart';
+part 'src/widgets/cubit.dart';
+part 'src/widgets/custom_app_bar.dart';
 
 class Netflix extends StatelessWidget {
   Netflix({Key key}) : super(key: key) {
