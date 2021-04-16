@@ -71,8 +71,34 @@ class SummaryState extends State<Summary> {
           return CustomScrollView(
 
             slivers: <Widget>[
-              SliverToBoxAdapter(
-                child: ContentHeader(featuredContent: show),
+              SliverAppBar(
+                primary: true,
+                expandedHeight: screenSize.height * 0.65,
+                backgroundColor: Colors.black,
+                leading: Image.asset('assets/images/netflix_icon.png'),
+                titleSpacing: 20.0,
+                title: Title(
+                  color: Colors.black,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      renderTitle('Series', 'Séries'),
+                      renderTitle('Films', 'Films'),
+                      renderTitle('Ma-liste', 'Ma liste'),
+                    ],
+                  ),
+                ),
+                flexibleSpace: FlexibleSpaceBar(
+                  collapseMode: CollapseMode.pin,
+                  background: Container(
+                    child: Stack(
+                      fit: StackFit.expand,
+                      children: <Widget>[
+                        ContentHeader(featuredContent: show),
+                      ],
+                    ),
+                  ),
+                ),
               ),
 
               SliverList(

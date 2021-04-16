@@ -225,7 +225,7 @@ class _ContentHeaderMobile extends StatelessWidget {
             children: [
               VerticalIconButton(
                 icon: Icons.add,
-                title: 'List',
+                title: 'Ma liste',
                 onTap: () => print('Ma liste'),
               ),
               FlatButton.icon(
