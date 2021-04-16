@@ -58,6 +58,7 @@ part 'src/widgets/responsive.dart';
 part 'src/widgets/vertical_icon_button.dart';
 part 'src/widgets/cubit.dart';
 part 'src/widgets/custom_app_bar.dart';
+part 'src/widgets/content_list.dart';
 
 class Netflix extends StatelessWidget {
   Netflix({Key key}) : super(key: key) {

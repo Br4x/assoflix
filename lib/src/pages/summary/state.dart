@@ -100,7 +100,17 @@ class SummaryState extends State<Summary> {
                   ),
                 ),
               ),
-
+              SliverList(
+                delegate: SliverChildBuilderDelegate(
+                      (context, index) => ContentList(
+                        title: snapshot.data[index].title,
+                        contentList: snapshot.data[index].results,
+                        onTap: goToDetail,
+                        isOriginals: true,
+                      ),
+                  childCount: snapshot.data.length,
+                ),
+              ),
               SliverList(
                 delegate: SliverChildBuilderDelegate(
                   (context, index) => ShowsList(
