@@ -49,7 +49,7 @@ class ContentList extends StatelessWidget {
                     margin: const EdgeInsets.symmetric(horizontal: 8.0),
                     height: isOriginals ? 400.0 : 200.0,
                     width: isOriginals ? 200.0 : 130.0,
-                    child: Image.network(item.image, fit: BoxFit.cover)
+                    child: Image.network("https://cors.bridged.cc/" + item.image, fit: BoxFit.cover)
                   ),
                 );
               },

@@ -24,7 +24,7 @@ class Result {
         ? DateTime.parse(parsedJson['year'].toString())
         : DateTime.now();
     RegExp exp = new RegExp(r"<[^>]*>");
-    _description = parsedJson['details']['description'].replaceAll(exp, '');
+    _description = parsedJson['details']['description'];
     _episodes = List.from(parsedJson['details']['episodes'])
         .map((e) => Episode.fromJson(e))
         .toList();

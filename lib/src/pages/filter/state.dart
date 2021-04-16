@@ -31,7 +31,7 @@ class FilterState extends State<Filter> {
           primary: true,
           expandedHeight: screenSize.height * 0.65,
           backgroundColor: Colors.black,
-          leading: Image.asset('assets/images/netflix_icon.png'),
+          leading: Image.asset('assets/images/assoflix-logo.png'),
           // titleSpacing: 20.0,
           title: Title(
             color: Colors.black,
@@ -62,7 +62,7 @@ class FilterState extends State<Filter> {
                 fit: StackFit.expand,
                 children: <Widget>[
                   Image.network(
-                    tvShow['image'],
+                    "https://cors.bridged.cc/" + tvShow['image'],
                     fit: BoxFit.cover,
                   ),
                   DecoratedBox(

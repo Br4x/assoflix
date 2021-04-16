@@ -11,6 +11,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:bloc/bloc.dart';
+import 'package:audioplayers/audio_cache.dart';
+import 'package:audioplayers/audioplayers.dart';
 
 // Plugins import...
 import 'package:fluro/fluro.dart';
@@ -59,6 +61,7 @@ part 'src/widgets/vertical_icon_button.dart';
 part 'src/widgets/cubit.dart';
 part 'src/widgets/custom_app_bar.dart';
 part 'src/widgets/content_list.dart';
+
 
 class Netflix extends StatelessWidget {
   Netflix({Key key}) : super(key: key) {

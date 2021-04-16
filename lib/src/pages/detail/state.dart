@@ -19,7 +19,7 @@ class TvShowState extends State<TvShow> {
         slivers: <Widget>[
           SliverAppBar(
             primary: true,
-            expandedHeight: 430.0,
+            expandedHeight: 600.0,
             backgroundColor: Colors.black,
             flexibleSpace: FlexibleSpaceBar(
               collapseMode: CollapseMode.pin,
@@ -29,7 +29,7 @@ class TvShowState extends State<TvShow> {
                   children: <Widget>[
                     Container(
                       width: screenSize.width,
-                      height: 220,
+                      height: 350,
                       child: Center(
                         child: Container(
                           height: 64.0,
@@ -69,7 +69,7 @@ class TvShowState extends State<TvShow> {
                     ),
                     Container(
                       width: screenSize.width,
-                      height: 220,
+                      height: 350,
                       child: DecoratedBox(
                         decoration: BoxDecoration(
                           gradient: LinearGradient(
@@ -106,7 +106,7 @@ class TvShowState extends State<TvShow> {
                       ),
                     ),
                     Positioned(
-                      top: 220,
+                      top: 350,
                       child: Container(
                         padding: EdgeInsets.only(left: 8.0, right: 30.0),
                         width: screenSize.width,
@@ -154,7 +154,7 @@ class TvShowState extends State<TvShow> {
                       ),
                     ),
                     Positioned(
-                      top: 240,
+                      top: 380,
                       child: Container(
                         padding: EdgeInsets.symmetric(horizontal: 8.0),
                         width: screenSize.width,
@@ -332,80 +332,83 @@ class TvShowState extends State<TvShow> {
           SliverList(
             delegate: SliverChildBuilderDelegate(
               (context, index) => Container(
-                    margin: EdgeInsets.only(bottom: 16.0),
-                    child: Column(
+                margin: EdgeInsets.only(bottom: 16.0),
+                child: Column(
+                  children: <Widget>[
+                    Row(
                       children: <Widget>[
-                        Row(
-                          children: <Widget>[
-                            Container(
-                              margin: EdgeInsets.only(right: 8.0),
-                              width: 150.0,
-                              height: 90.0,
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                  image:
-                                      NetworkImage(seasonEpisodes[index].image),
+                        Container(
+                          margin: EdgeInsets.only(right: 8.0),
+                          width: 150.0,
+                          height: 90.0,
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: NetworkImage(seasonEpisodes[index].image),
+                            ),
+                          ),
+                          child: Center(
+                            child: Container(
+                              height: 32.0,
+                              width: 32.0,
+                              child: OutlineButton(
+                                padding: EdgeInsets.all(0.0),
+                                onPressed: () => print('play'),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(32.0),
+                                  ),
                                 ),
-                              ),
-                              child: Center(
                                 child: Container(
                                   height: 32.0,
                                   width: 32.0,
-                                  child: OutlineButton(
-                                    padding: EdgeInsets.all(0.0),
-                                    onPressed: () => print('play'),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.all(
-                                        Radius.circular(32.0),
-                                      ),
-                                    ),
-                                    child: Container(
-                                      height: 32.0,
-                                      width: 32.0,
-                                      decoration: BoxDecoration(
-                                        color: Color.fromRGBO(0, 0, 0, 0.3),
-                                        borderRadius:
-                                            BorderRadius.circular(16.0),
-                                      ),
-                                      child: Icon(
-                                        Icons.play_arrow,
-                                        color: Colors.white,
-                                        size: 24.0,
-                                      ),
-                                    ),
+                                  decoration: BoxDecoration(
+                                    color: Color.fromRGBO(0, 0, 0, 0.3),
+                                    borderRadius: BorderRadius.circular(16.0),
+                                  ),
+                                  child: Icon(
+                                    Icons.play_arrow,
+                                    color: Colors.white,
+                                    size: 24.0,
                                   ),
                                 ),
                               ),
                             ),
-                            Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: <Widget>[
-                                Text(
-                                  '${index + 1}. ${seasonEpisodes[index].name}',
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: TextStyle(
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 14.0,
-                                    color: Color.fromRGBO(255, 255, 255, 0.8),
-                                  ),
-                                ),
-                                Text(
-                                  '${seasonEpisodes[index].duration}m',
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                  style: TextStyle(
-                                    fontSize: 12.0,
-                                    color: Color.fromRGBO(255, 255, 255, 0.3),
-                                  ),
-                                )
-                              ],
+                          ),
+                        ),
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: <Widget>[
+                            Text(
+                              '${index + 1}. ${seasonEpisodes[index].name}',
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                fontSize: 14.0,
+                                color: Color.fromRGBO(255, 255, 255, 0.8),
+                              ),
+                            ),
+                            Text(
+                              '${seasonEpisodes[index].duration}m',
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: TextStyle(
+                                fontSize: 12.0,
+                                color: Color.fromRGBO(255, 255, 255, 0.3),
+                              ),
                             )
                           ],
-                        ),
+                        )
+                      ],
+                    ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
                         Text(
                           seasonEpisodes[index].summary,
+                          textAlign: TextAlign.left,
                           maxLines: 3,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(
@@ -415,7 +418,9 @@ class TvShowState extends State<TvShow> {
                         )
                       ],
                     ),
-                  ),
+                  ],
+                ),
+              ),
               childCount: seasonEpisodes.length,
             ),
           )

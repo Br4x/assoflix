@@ -9,12 +9,12 @@ class Episode {
   int _duration;
 
   Episode.fromJson(Map<String, dynamic> parsedJson) {
-    RegExp exp = new RegExp(r"<[^>]*>");
+    //RegExp exp = new RegExp(r"<[^>]*>");
     _number = parsedJson['number'];
     _season = parsedJson['season'];
     _image = (parsedJson['image'] ?? {})['medium'];
     _summary = parsedJson['summary'] != null
-        ? parsedJson['summary'].replaceAll(exp, '')
+        ? parsedJson['summary']
         : '';
     _name = parsedJson['name'];
     _duration = parsedJson['airtime'] != null &&

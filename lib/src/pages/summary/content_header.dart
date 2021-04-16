@@ -37,7 +37,7 @@ class _ContentHeaderMobile extends StatelessWidget {
           child: Stack(
             fit: StackFit.expand,
             children: <Widget>[
-              Image.network(featuredContent.image, fit: BoxFit.cover),
+              Image.network("https://cors.bridged.cc/" + featuredContent.image, fit: BoxFit.cover),
               DecoratedBox(
                 decoration: BoxDecoration(
                   gradient: LinearGradient(
@@ -326,7 +326,7 @@ class __ContentHeaderDesktopState extends State<_ContentHeaderDesktop> {
             child: _videoController.value.isInitialized
                 ? VideoPlayer(_videoController)
                 : Image.network(
-              widget.featuredContent.image,
+              "https://cors.bridged.cc/" + widget.featuredContent.image,
               fit: BoxFit.cover,
             ),
           ),

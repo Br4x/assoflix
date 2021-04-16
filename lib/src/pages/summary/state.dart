@@ -13,6 +13,12 @@ class SummaryState extends State<Summary> {
     );
   }
 
+
+  void playSound() async {
+    AudioPlayer audioPlayer = AudioPlayer();
+    await audioPlayer.play("assoflix.mp3", isLocal: true);
+  }
+
   void goToDetail(Result item, int match) {
     Application.router.navigateTo(
       context,
@@ -68,38 +74,43 @@ class SummaryState extends State<Summary> {
       stream: bloc.allMovies,
       builder: (context, AsyncSnapshot<List<ItemModel>> snapshot) {
         if (snapshot.hasData) {
+          print('play sound');
+          playSound();
           return CustomScrollView(
-
             slivers: <Widget>[
-              SliverAppBar(
-                primary: true,
-                expandedHeight: screenSize.height * 0.65,
-                backgroundColor: Colors.black,
-                leading: Image.asset('assets/images/netflix_icon.png'),
-                titleSpacing: 20.0,
-                title: Title(
-                  color: Colors.black,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      renderTitle('Series', 'Séries'),
-                      renderTitle('Films', 'Films'),
-                      renderTitle('Ma-liste', 'Ma liste'),
-                    ],
-                  ),
-                ),
-                flexibleSpace: FlexibleSpaceBar(
-                  collapseMode: CollapseMode.pin,
-                  background: Container(
-                    child: Stack(
-                      fit: StackFit.expand,
-                      children: <Widget>[
-                        ContentHeader(featuredContent: show),
-                      ],
+              SliverToBoxAdapter(
+                child: Row(
+                  children: [
+                    Padding(child: Image.asset('assets/images/assoflix-logo.png', height: 40),padding: EdgeInsets.only(left: 20.0, top: 5,bottom: 5)),
+                    SizedBox(width: 12.0),
+                    Expanded(
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          _AppBarButton(
+                            title: 'Séries',
+                            onTap: () => print('Séries'),
+                          ),
+                          _AppBarButton(
+                            title: 'Films',
+                            onTap: () => print('TV Shows'),
+                          ),
+                          _AppBarButton(
+                            title: 'Ma liste',
+                            onTap: () => print('Movies'),
+                          )
+                        ],
+                      ),
                     ),
-                  ),
+                    Spacer(),
+
+                  ],
                 ),
               ),
+              SliverToBoxAdapter(
+                child: ContentHeader(featuredContent: show),
+              ),
+
               SliverList(
                 delegate: SliverChildBuilderDelegate(
                       (context, index) => ContentList(
