@@ -19,7 +19,7 @@ var detailRouteHandler = Handler(
 var trailerRouteHandler = Handler(
   handlerFunc: (context, params) {
     final dynamic object = context.settings.arguments;
-    return Video(title: object['title']);
+    return Video(video: object['video']);
   },
 );
 var filterRouteHandler = Handler(

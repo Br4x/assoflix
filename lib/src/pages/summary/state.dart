@@ -74,8 +74,7 @@ class SummaryState extends State<Summary> {
       stream: bloc.allMovies,
       builder: (context, AsyncSnapshot<List<ItemModel>> snapshot) {
         if (snapshot.hasData) {
-          print('play sound');
-          playSound();
+          //playSound();
           return CustomScrollView(
             slivers: <Widget>[
               SliverToBoxAdapter(

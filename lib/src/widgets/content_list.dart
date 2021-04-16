@@ -16,6 +16,7 @@ class ContentList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(this.contentList);
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 6.0),
       child: Column(

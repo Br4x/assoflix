@@ -7,6 +7,7 @@ class Episode {
   String _summary;
   String _name;
   int _duration;
+  String _video;
 
   Episode.fromJson(Map<String, dynamic> parsedJson) {
     //RegExp exp = new RegExp(r"<[^>]*>");
@@ -17,6 +18,7 @@ class Episode {
         ? parsedJson['summary']
         : '';
     _name = parsedJson['name'];
+    _video = parsedJson['video'];
     _duration = parsedJson['airtime'] != null &&
             parsedJson['airtime'].toString().isNotEmpty
         ? int.parse(parsedJson['airtime'].split(':')[0])
@@ -25,6 +27,7 @@ class Episode {
 
   int get number => _number;
   int get season => _season;
+  String get video => _video;
   String get image => _image;
   String get summary => _summary;
   String get name => _name;

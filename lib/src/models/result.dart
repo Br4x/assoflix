@@ -4,6 +4,7 @@ class Result {
   int id;
   String _name;
   String _image;
+  String _video;
   List<String> _genres;
   List<String> _cast;
   List<Episode> _episodes;
@@ -14,6 +15,7 @@ class Result {
   Result.fromJson(Map<String, dynamic> parsedJson) {
     _name = parsedJson['name'];
     _image = parsedJson['image'];
+    _video = parsedJson['video'];
     _genres = List.from(parsedJson['details']['genres'])
         .map((genre) => genre.toString())
         .toList();
@@ -33,7 +35,7 @@ class Result {
       if (!_seasons.contains(seasonNumber)) _seasons.add(seasonNumber);
     });
   }
-
+  String get video => _video;
   String get name => _name;
   String get image => _image;
   List<String> get genres => _genres;

@@ -79,6 +79,7 @@ Map<String, dynamic> tvShow = {
   "_id": "5bedbeffa70245f2bbdd6a05",
   "id": 89,
   "name": "Agir ensemble",
+  "video": "https://www.youtube.com/watch?v=MFDuIhQDWOE",
   "image":
       "https://i.ytimg.com/vi/MFDuIhQDWOE/maxresdefault.jpg"
 };

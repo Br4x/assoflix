@@ -68,7 +68,7 @@ class VideoState extends State<Video> {
             child: PlayerControl(
               vcontroller,
               visible: controlVisible,
-              title: widget.title,
+              title: widget.video,
             ),
             onTap: handlerGesture,
           ),

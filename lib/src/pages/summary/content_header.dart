@@ -291,53 +291,50 @@ class _ContentHeaderDesktop extends StatefulWidget {
 }
 
 class __ContentHeaderDesktopState extends State<_ContentHeaderDesktop> {
-  VideoPlayerController _videoController;
-  bool _isMuted = true;
+
+
+  //VideoPlayerController _videoController;
+  YoutubePlayerController _videoController;
 
   @override
   void initState() {
     super.initState();
-    _videoController = VideoPlayerController.asset('assets/video/promo.mp4')
-    //VideoPlayerController.network(widget.featuredContent.videoUrl)
-      ..initialize().then((_) => setState(() {}))
-      ..setVolume(1)
-      ..play();
+    _videoController = YoutubePlayerController(
+      initialVideoId: YoutubePlayerController.convertUrlToId(widget.featuredContent.video),
+      params: YoutubePlayerParams(
+          autoPlay:true,
+        startAt: Duration(seconds: 0),
+        showControls: false,
+        showFullscreenButton: false,
+      ),
+    );
   }
 
   @override
   void dispose() {
-    _videoController.dispose();
+    //_videoController.r();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => _videoController.value.isPlaying
+      onTap: () => _videoController.value.playerState == PlayerState.playing
           ? _videoController.pause()
           : _videoController.play(),
       child: Stack(
         alignment: Alignment.bottomLeft,
         children: [
-          AspectRatio(
-            aspectRatio: _videoController.value.isInitialized
-                ? _videoController.value.aspectRatio
-                : 2.344,
-            child: _videoController.value.isInitialized
-                ? VideoPlayer(_videoController)
-                : Image.network(
-              "https://cors.bridged.cc/" + widget.featuredContent.image,
-              fit: BoxFit.cover,
-            ),
+          YoutubePlayerIFrame(
+            controller: _videoController,
+            aspectRatio: 2.344,
           ),
           Positioned(
             left: 0,
             right: 0,
             bottom: -1.0,
             child: AspectRatio(
-              aspectRatio: _videoController.value.isInitialized
-                  ? _videoController.value.aspectRatio
-                  : 2.344,
+              aspectRatio: 2.344,
               child: Container(
                 decoration: const BoxDecoration(
                   gradient: LinearGradient(
@@ -446,21 +443,8 @@ class __ContentHeaderDesktopState extends State<_ContentHeaderDesktop> {
                         ),
                       ),
                     ),
-                    const SizedBox(width: 20.0),
-                    if (_videoController.value.isInitialized)
-                      IconButton(
-                        icon: Icon(
-                          _isMuted ? Icons.volume_off : Icons.volume_up,
-                        ),
-                        color: Colors.white,
-                        iconSize: 30.0,
-                        onPressed: () => setState(() {
-                          _isMuted
-                              ? _videoController.setVolume(100)
-                              : _videoController.setVolume(0);
-                          _isMuted = _videoController.value.volume == 0;
-                        }),
-                      ),
+                    const SizedBox(width: 20.0)
+
                   ],
                 ),
               ],

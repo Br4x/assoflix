@@ -2,9 +2,19 @@ part of netflix;
 
 class TvShowState extends State<TvShow> {
   var currentSeason = 1;
+  YoutubePlayerController _videoController;
   @override
   void initState() {
     super.initState();
+    _videoController = YoutubePlayerController(
+      initialVideoId: YoutubePlayerController.convertUrlToId(widget.item.episodes[0].video),
+      params: YoutubePlayerParams(
+        autoPlay:true,
+        startAt: Duration(seconds: 0),
+        showControls: false,
+        showFullscreenButton: false,
+      ),
+    );
   }
 
   @override
@@ -27,45 +37,15 @@ class TvShowState extends State<TvShow> {
                 child: Stack(
                   fit: StackFit.loose,
                   children: <Widget>[
+                    YoutubePlayerIFrame(
+                      controller: _videoController,
+                      aspectRatio: 3.5,
+                    ),
                     Container(
                       width: screenSize.width,
-                      height: 350,
-                      child: Center(
-                        child: Container(
-                          height: 64.0,
-                          width: 64.0,
-                          child: OutlineButton(
-                            padding: EdgeInsets.all(0.0),
-                            onPressed: () => print('play'),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.all(
-                                Radius.circular(32.0),
-                              ),
-                            ),
-                            child: Container(
-                              height: 64.0,
-                              width: 64.0,
-                              decoration: BoxDecoration(
-                                color: Color.fromRGBO(0, 0, 0, 0.3),
-                                borderRadius: BorderRadius.circular(32.0),
-                              ),
-                              child: Icon(
-                                Icons.play_arrow,
-                                color: Colors.white,
-                                size: 48.0,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: NetworkImage(
-                            widget.item.image,
-                          ),
-                          fit: BoxFit.fitWidth,
-                        ),
-                      ),
+                      height: 600,
+
+
                     ),
                     Container(
                       width: screenSize.width,
@@ -343,7 +323,7 @@ class TvShowState extends State<TvShow> {
                           height: 90.0,
                           decoration: BoxDecoration(
                             image: DecorationImage(
-                              image: NetworkImage(seasonEpisodes[index].image),
+                              image: NetworkImage("https://cors.bridged.cc/" + seasonEpisodes[index].image),
                             ),
                           ),
                           child: Center(
