@@ -20,7 +20,7 @@ class ShowsList extends StatelessWidget {
           margin: EdgeInsets.symmetric(horizontal: 2.5),
           width: 120.0,
           height: 140.0,
-          child: Image.network("https://cors.bridged.cc/" + item.image, fit: BoxFit.cover),
+          child: Image.network(kIsWeb ? "https://cors.bridged.cc/" + item.image : item.image, fit: BoxFit.cover),
         ),
       );
     }).toList();

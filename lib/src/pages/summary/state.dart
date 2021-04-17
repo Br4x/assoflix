@@ -93,10 +93,6 @@ class SummaryState extends State<Summary> {
                           _AppBarButton(
                             title: 'Films',
                             onTap: () => print('TV Shows'),
-                          ),
-                          _AppBarButton(
-                            title: 'Ma liste',
-                            onTap: () => print('Movies'),
                           )
                         ],
                       ),
@@ -116,7 +112,7 @@ class SummaryState extends State<Summary> {
                         title: snapshot.data[index].title,
                         contentList: snapshot.data[index].results,
                         onTap: goToDetail,
-                        isOriginals: true,
+                        isOriginals: kIsWeb ? true : false,
                       ),
                   childCount: snapshot.data.length,
                 ),

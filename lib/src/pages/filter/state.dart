@@ -62,7 +62,7 @@ class FilterState extends State<Filter> {
                 fit: StackFit.expand,
                 children: <Widget>[
                   Image.network(
-                    "https://cors.bridged.cc/" + tvShow['image'],
+                    kIsWeb ? "https://cors.bridged.cc/" + tvShow['image'] : tvShow['image'],
                     fit: BoxFit.cover,
                   ),
                   DecoratedBox(

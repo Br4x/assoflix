@@ -16,7 +16,6 @@ class ContentList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(this.contentList);
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 6.0),
       child: Column(
@@ -50,7 +49,7 @@ class ContentList extends StatelessWidget {
                     margin: const EdgeInsets.symmetric(horizontal: 8.0),
                     height: isOriginals ? 400.0 : 200.0,
                     width: isOriginals ? 200.0 : 130.0,
-                    child: Image.network("https://cors.bridged.cc/" + item.image, fit: BoxFit.cover)
+                    child: Image.network(kIsWeb ? "https://cors.bridged.cc/" + item.image : item.image, fit: BoxFit.cover)
                   ),
                 );
               },

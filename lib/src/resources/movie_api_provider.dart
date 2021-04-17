@@ -1,7 +1,7 @@
 part of netflix;
 
 class MovieApiProvider {
-  final String host = 'http://localhost:7000';
+  final String host = kIsWeb ? 'http://localhost:7000' : 'http://10.0.2.2:7000';
   Client client = Client();
 
   Future<List<ItemModel>> fetchMovieList() async {

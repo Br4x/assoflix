@@ -1,14 +1,23 @@
 part of netflix;
 
 class VideoState extends State<Video> {
-  VideoPlayerController vcontroller;
+  YoutubePlayerController vcontroller;
   bool controlVisible;
   Timer timer;
 
   @override
   void initState() {
     controlVisible = true;
-    vcontroller = VideoPlayerController.asset('assets/video/promo.mp4');
+    vcontroller = YoutubePlayerController(
+      initialVideoId:
+      YoutubePlayerController.convertUrlToId(widget.video),
+      params: YoutubePlayerParams(
+        autoPlay: true,
+        startAt: Duration(seconds: 0),
+        showControls: false,
+        showFullscreenButton: false,
+      ),
+    );
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark.copyWith(
       statusBarColor: Colors.transparent,
     ));
@@ -23,7 +32,7 @@ class VideoState extends State<Video> {
 
   @override
   void dispose() {
-    vcontroller?.dispose();
+    //vcontroller?.dispose();
     timer?.cancel();
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitDown,
@@ -56,22 +65,11 @@ class VideoState extends State<Video> {
       body: Stack(
         fit: StackFit.expand,
         children: <Widget>[
-          PlayerLifeCycle(
-            vcontroller,
-            (BuildContext context, VideoPlayerController controller) =>
-                AspectRatio(
-                  aspectRatio: aspectRatio,
-                  child: VideoPlayer(vcontroller),
-                ),
+          YoutubePlayerIFrame(
+            controller: vcontroller,
+            aspectRatio: kIsWeb ? 2.344 : 1.7,
           ),
-          GestureDetector(
-            child: PlayerControl(
-              vcontroller,
-              visible: controlVisible,
-              title: widget.video,
-            ),
-            onTap: handlerGesture,
-          ),
+
         ],
       ),
     );

@@ -29,7 +29,7 @@ class TvShowState extends State<TvShow> {
         slivers: <Widget>[
           SliverAppBar(
             primary: true,
-            expandedHeight: 600.0,
+            expandedHeight: kIsWeb ? 800.0 : 400,
             backgroundColor: Colors.black,
             flexibleSpace: FlexibleSpaceBar(
               collapseMode: CollapseMode.pin,
@@ -39,17 +39,15 @@ class TvShowState extends State<TvShow> {
                   children: <Widget>[
                     YoutubePlayerIFrame(
                       controller: _videoController,
-                      aspectRatio: 3.5,
+                      aspectRatio: kIsWeb ? 4.5 : 1.7,
                     ),
                     Container(
                       width: screenSize.width,
-                      height: 600,
-
-
+                      height: kIsWeb ? 580 : 400,
                     ),
                     Container(
                       width: screenSize.width,
-                      height: 350,
+                      height: kIsWeb ? 580 : 250,
                       child: DecoratedBox(
                         decoration: BoxDecoration(
                           gradient: LinearGradient(
@@ -86,7 +84,7 @@ class TvShowState extends State<TvShow> {
                       ),
                     ),
                     Positioned(
-                      top: 350,
+                      top: kIsWeb ? 580 : 250,
                       child: Container(
                         padding: EdgeInsets.only(left: 8.0, right: 30.0),
                         width: screenSize.width,
@@ -134,7 +132,7 @@ class TvShowState extends State<TvShow> {
                       ),
                     ),
                     Positioned(
-                      top: 380,
+                      top: kIsWeb ? 600 : 280,
                       child: Container(
                         padding: EdgeInsets.symmetric(horizontal: 8.0),
                         width: screenSize.width,
@@ -323,7 +321,7 @@ class TvShowState extends State<TvShow> {
                           height: 90.0,
                           decoration: BoxDecoration(
                             image: DecorationImage(
-                              image: NetworkImage("https://cors.bridged.cc/" + seasonEpisodes[index].image),
+                              image: NetworkImage(kIsWeb ? "https://cors.bridged.cc/" + seasonEpisodes[index].image : seasonEpisodes[index].image),
                             ),
                           ),
                           child: Center(
@@ -332,7 +330,22 @@ class TvShowState extends State<TvShow> {
                               width: 32.0,
                               child: OutlineButton(
                                 padding: EdgeInsets.all(0.0),
-                                onPressed: () => print('play'),
+                                onPressed: () => SystemChrome.setPreferredOrientations([
+                                  DeviceOrientation.landscapeRight,
+                                  DeviceOrientation.landscapeLeft,
+                                ]).then((e) {
+                                  Application.router.navigateTo(
+                                    context,
+                                    Routes.video,
+                                    routeSettings: RouteSettings(
+                                      arguments: {
+                                        'video': seasonEpisodes[index].video
+                                      },
+                                    ),
+                                    transition: TransitionType.inFromBottom,
+                                    transitionDuration: const Duration(milliseconds: 200),
+                                  );
+                                }),
                                 shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.all(
                                     Radius.circular(32.0),
